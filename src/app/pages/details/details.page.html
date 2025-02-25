@@ -1,0 +1,56 @@
+<ion-content>
+  <div class="container">
+
+    <div class="heading">
+      <div>
+        <img (click)="back()" [src]="lAImg">
+        <h3>Task Details</h3>
+      </div>
+      <ion-icon (click)="editMode=!editMode" name="ellipsis-vertical" slot="end"></ion-icon>
+    </div>
+
+    @if(editMode){
+    <div class="edition">
+      <p (click)="edit()">Edit</p>
+      <p (click)="shareTask(currentTask)">Share</p>
+      <p (click)="deleteTask(currentTask._id)">Delete</p>
+    </div>
+    }
+
+    <img [lazyLoad]="currentTask?.image" [defaultImage]="lazyImg">
+    <div class="task">
+
+      <h3>{{currentTask?.title}}</h3>
+      <p>{{currentTask?.desc}}</p>
+
+      <div class="details">
+        <div class="date">
+          <div>
+            <span>End Date</span>
+            <p>{{(currentTask?.createdAt)|date:'dd  MMM,yyyy'}}</p>
+          </div>
+          <img [src]="calenderImg">
+        </div>
+
+        <div>
+          <p>{{currentTask?.status}}</p>
+          <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+        </div>
+
+        <div>
+          <ion-icon name="flag-outline" slot="start"></ion-icon>
+          <p>{{currentTask?.priority}} priority</p>
+          <ion-icon name="caret-down-outline" slot="end"></ion-icon>
+        </div>
+
+      </div>
+    </div>
+
+    <div>
+      <img [src]="qrImg">
+    </div>
+
+
+
+  </div>
+</ion-content>

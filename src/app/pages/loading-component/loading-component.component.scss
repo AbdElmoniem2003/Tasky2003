@@ -1,0 +1,103 @@
+@import "../../../core/mixins.scss";
+@import "../../../global.scss";
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.heading.skeleton {
+  h3 {
+    @include shapingMixin(90px, 32px);
+    border-radius: #{$mainRadius};
+  }
+
+  p {
+    border-radius: #{$mainRadius};
+    @include shapingMixin(24px, 24px)
+  }
+}
+
+section {
+  @include shapingMixin(100%, 21px);
+  border-radius: #{$mainRadius};
+}
+
+.search.skeleton {
+  margin-top: 25px;
+  @include flexMixin(row, space-between, unset, 5px);
+
+  span {
+    @include shapingMixin(100%, 36px);
+    border-radius:#{$mainRadius};
+  }
+}
+
+.tasks.skeleton {
+  padding-top: 10px;
+  @include flexMixin(column, unset, unset, 8px);
+
+  >div {
+    @include flexMixin(row, space-between, center, 12px);
+    @include shapingMixin(100%, 96px);
+
+    ion-avatar {
+      border-radius: 50%;
+    }
+
+    >div {
+      @include flexMixin(row wrap, space-between, center, 12px);
+
+    }
+
+    >div:first-of-type {
+      @include shapingMixin(60%, 72px);
+
+      h3 {
+        margin: 0 0 5px 0 !important;
+        padding: 0 !important;
+        border-radius: #{$mainRadius}
+      }
+
+      span {
+        border-radius: #{$mainRadius};
+      }
+
+      >p {
+        @include shapingMixin(55px, 22px);
+        border-radius: #{$mainRadius}
+      }
+
+      >div:first-of-type {
+        flex-basis: 66%;
+        height: 22px;
+      }
+
+      >div:last-of-type {
+        @include flexMixin(row, space-between, center, 8px);
+        flex-basis: 100%;
+
+        >p {
+          @include shapingMixin(67px, 18px);
+          border-radius:#{$mainRadius};
+        }
+
+        >span {
+          @include shapingMixin(55px, 18px)
+        }
+      }
+    }
+
+
+  }
+}
+
+.dots {
+  span {
+    border-radius:#{$mainRadius};
+    @include shapingMixin(24px, 24px);
+
+  }
+}

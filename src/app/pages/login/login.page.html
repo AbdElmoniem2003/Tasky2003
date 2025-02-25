@@ -1,0 +1,41 @@
+<ion-content>
+
+  <div><img [src]="lazyImg" alt=""></div>
+
+  <div class="container">
+    <form [formGroup]="loginForm">
+      <h3 class="login">Login</h3>
+
+      <div class="phone">
+        @if(selectedCountry){
+        <div (click)="handleCountryCode()">
+          <img src="https://flagsapi.com/{{selectedCountry.countryCode.toUpperCase()}}/flat/64.png" alt="000">
+          <div>
+            <p>+{{selectedCountry.countryCallingCode}}</p>
+            <ion-icon name="chevron-down-outline" slot="end" color="primary"></ion-icon>
+          </div>
+        </div>
+        }
+        <input formControlName="phone" id="phone" type="tel" placeholder="123 456-7890" required />
+      </div>
+
+      @if(loginForm.controls['phone'].touched && loginForm.controls['phone'].invalid){
+      <small>this field is required</small>
+      }
+      <div id="password">
+        <input formControlName="password" (onInput)="login(loginForm.value)" type="password" placeholder="Password..."
+          required minlength="6" required>
+        <ion-icon (click)="showPassword()" name='eye-outline' slot="end"></ion-icon>
+      </div>
+      @if(loginForm.controls['password'].touched && loginForm.controls['password'].invalid){
+      <small>this field is required of <b><i>6</i></b> characters at least</small>
+      }
+
+      <button (click)="login(loginForm.value)" [disabled]="loginForm.invalid"> Sign In</button>
+
+      <p>Didn’t have any account <span (click)="switch()">Sign Up here</span></p>
+    </form>
+  </div>
+
+
+</ion-content>

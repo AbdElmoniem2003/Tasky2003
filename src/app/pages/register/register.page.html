@@ -1,0 +1,71 @@
+<ion-content>
+
+  <div>
+    <img [src]="lazyImg" alt="">
+  </div>
+
+  <div class="container">
+    <form [formGroup]="registerForm">
+      <h3 class="register">Login</h3>
+
+      <input formControlName="displayName" type="text" placeholder="Name" required>
+      @if(registerForm.controls['displayName'].touched && registerForm.controls['displayName'].invalid){
+      <small>this field is required</small>
+      }
+
+      <div class="phone">
+        @if(selectedCountry){
+        <div (click)="handleCountryCode()">
+          <img src="https://flagsapi.com/{{selectedCountry.countryCode.toUpperCase()}}/flat/64.png" alt="000">
+          <div>
+            <p>+{{selectedCountry.countryCallingCode}}</p>
+            <ion-icon name="chevron-down-outline" slot="end" color="primary"></ion-icon>
+          </div>
+        </div>
+        }
+        <input formControlName="phone" id="phone" type="tel" placeholder="123 456-7890" required />
+      </div> @if(registerForm.controls['phone'].touched && registerForm.controls['phone'].invalid){
+      <small>this field is required</small>
+      }
+
+      <input formControlName="experienceYears" type="number" placeholder="Years of experience" required>
+      @if(registerForm.controls['experienceYears'].touched && registerForm.controls['experienceYears'].invalid){
+      <small>this field is required</small>
+      }
+
+      <div class="level">
+        <label>Choose experience Level</label>
+        <ion-icon name="chevron-down-outline" slot="end" color="primary" aria-hidden="true"></ion-icon>
+        <ion-select formControlName="level" interface="action-sheet" toggleIcon="" required>
+          <ion-select-option value="senior">Senior</ion-select-option>
+          <ion-select-option value="junior">Junior</ion-select-option>
+        </ion-select>
+      </div>
+      @if(registerForm.controls['level'].touched && registerForm.controls['level'].invalid){
+      <small>this field is required</small>
+      }
+
+      <input formControlName="address" type="text" placeholder="Address" required>
+      @if(registerForm.controls['address'].touched && registerForm.controls['address'].invalid){
+      <small>this field is required</small>
+      }
+
+      <div id="password">
+        <input formControlName="password" (onInput)="register(registerForm.value)" type="password"
+          placeholder="Password..." minlength="6" required>
+        <ion-icon (click)="showPassword()" name='eye-outline' slot="end"></ion-icon>
+      </div>
+      @if(registerForm.controls['password'].touched && registerForm.controls['password'].invalid){
+      <small>this field is required of <b><i>6</i></b> characters at least</small>
+      }
+
+
+      <button (click)="register(registerForm.value)" [disabled]="registerForm.invalid">Sign Up</button>
+
+      <p>Already have any account? <span (click)="switch()">Sign in</span></p>
+
+    </form>
+
+  </div>
+
+</ion-content>

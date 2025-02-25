@@ -1,0 +1,458 @@
+@use "./core/mixins.scss" as *;
+/*
+* App Global CSS
+* ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+* Ionic Dark Mode
+* -----------------------------------------------------
+* For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+
+
+// Global Variables
+$btnColor: #5f33e1;
+$paragraphColor: rgba(124, 124, 128, 1);
+$mainRadius: 10px;
+$ipBorderColor: rgba(186, 186, 186, 1);
+$searchBg: rgba(240, 236, 255, 1);
+$waitingColor: rgba(255, 125, 83, 1);
+$waitingBg: rgba(255, 228, 242, 1);
+$finishedColor: rgba(0, 135, 255, 1);
+$finishedBg: rgba(227, 242, 255, 1);
+$inprogressBg: rgba(240, 236, 255, 1);
+$ipColor: rgba(127, 127, 127, 1);
+$selectBg: rgba(240, 236, 255, 1);
+$mainColor: rgba(47, 47, 47, 0.6);
+$mainBg: rgba(245, 245, 245, 1);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family:  sans-serif;
+}
+
+body {
+  padding: 0 !important;
+  height: 812px !important;
+
+  .loading-parent {
+    position: relative;
+    margin: auto 0 !important;
+    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+    background: white;
+
+    >img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+    }
+
+    >p {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 18px;
+      font-family: cursive;
+      font-style: italic;
+      letter-spacing: 0.5px;
+      text-shadow: 0px 0px 10px violet;
+    }
+  }
+}
+
+.container {
+  padding: 24px 22px 32px;
+  width: 100%;
+
+  .heading {
+    @include flexMixin(row, space-between, center, 8px);
+
+    div {
+      display: flex;
+      gap: 8px;
+    }
+
+    h3 {
+      margin: 0 !important;
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+
+  }
+
+  section {
+    padding: 30px 0 10px !important;
+  }
+}
+
+button[disabled='true'] {
+  opacity: 0.7;
+}
+
+#password {
+  border: none;
+}
+
+.primary-action-sheet,
+.login-failed,
+.register-failed {
+  --ion-color-primary: #{$btnColor};
+
+  .alert-wrapper>.alert-head>h2 {
+    --ion-color-primary:#{$waitingColor};
+    color: var(--ion-color-primary);
+  }
+}
+
+.delete-action-sheet {
+  --ion-color-primary: orangered;
+  box-shadow: 1px 1px 1px 1px yellow;
+}
+
+ion-toast {
+  direction: rtl;
+}
+
+.delete-toast,
+.error-toast {
+  --ion-color-primary: orangered;
+}
+
+.add-toast {
+  --ion-color-primary: #{$btnColor};
+  text-align: center;
+}
+
+.edit-toast {
+  --ion-color-primary: #{$finishedColor};
+}
+
+form {
+
+  >button[disabled] {
+    opacity: 0.5;
+  }
+
+  >label {
+    color: #{$paragraphColor};
+    font-size: 12px;
+    margin-top: 8px;
+    text-transform: capitalize;
+  }
+
+  >input,
+  textarea,
+  select,
+  ion-select,
+  >div>input,
+  div {
+    outline: none;
+    font-size: 14px;
+    color:#{$ipColor};
+    padding: 0 10px;
+    height: 50px;
+    background-color: transparent;
+    @include flexMixin(row, unset, center, 0);
+    @include borderMixin(1px, solid, #{$ipBorderColor}, #{$mainRadius});
+  }
+
+  ion-select,
+  select {
+    --ion-color-primary:#{$btnColor} !important;
+    appearance: none;
+    background-color: #{$selectBg};
+    letter-spacing: 0.2px;
+    text-transform: capitalize !important;
+    font-size: 16px;
+    font-weight: 700;
+    color: #{$btnColor};
+    width: 100%;
+    padding: 0 10px 0 50px !important;
+    @include flexMixin(row, space-between, center, 0);
+
+    // &::part(label) {
+    //   padding-left: 30px;
+    // }
+
+    >ion-icon {
+      position: absolute;
+      border: none;
+      background: transparent;
+      top: 50%;
+      right: 0px;
+      width: 24px;
+      height: 24px;
+      z-index: -2;
+      transform: translateY(-50%);
+    }
+  }
+
+  >button,
+  ion-button {
+    border-radius: #{$mainRadius};
+    font-weight: 700;
+    --ion-color-primary: #{$btnColor};
+    @include shapingMixin(100%, 50px);
+    @include flexMixin(row, center, center, 0);
+    @include boxingMixin(0, 0, unset);
+    @include fontMixin(16px, inherit, var(--ion-color-light), 20px);
+  }
+
+  .desc {
+    height: 175px;
+    padding: 15px;
+    resize: none;
+    // color: var(--ion-color-dark);
+  }
+}
+
+.phone {
+  gap: 12px;
+
+  >div {
+    display: flex;
+    gap: 8px;
+    width: 83px !important;
+    border: none !important;
+    height: fit-content !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    align-self: anchor-center;
+    align-items: center;
+    flex-basis: 83px;
+
+    >img {
+      width: 24px;
+      height: 24px;
+      border-radius: 30%;
+    }
+
+    >div {
+      padding: 0 !important;
+      border: none !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 3px !important;
+      color: #{$ipColor};
+
+      >ion-icon {
+        --ion-color-primary: #{$ipColor};
+        @include shapingMixin(20px, 20px);
+      }
+    }
+  }
+
+  >input {
+    width: 326px;
+    border: 0 !important;
+    height: 48px !important;
+  }
+}
+
+.country-code {
+  background-color: #94736f;
+  position: fixed;
+  height: 100%;
+  margin: 45px auto;
+  overflow: hidden;
+  width: 330px;
+
+  >.ion-page {
+    justify-content: start;
+    display: flex;
+    overflow: hidden;
+  }
+
+  >div {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 5px;
+  }
+}
+
+small {
+  color: #ff0000;
+  letter-spacing: 2px;
+  text-align: center;
+  text-shadow: 0px 0px 5px var(--ion-color-dark);
+  width: 'fit-content';
+  margin: 0 auto;
+  padding: 0 5px;
+  @include borderMixin(0 3px, solid, var(--ion-color-dark), 5px);
+}
+
+.main-action-sheet {
+  --ion-color-primary:#{$btnColor};
+}
+
+
+body.dark {
+
+
+  --ion-background-color: #0e3153 !important;
+
+  $btnColor: rgb(28, 137, 90);
+  $paragraphColor: rgb(201, 201, 201);
+  $mainRadius: 10px;
+  $ipBorderColor: rgba(186, 186, 186, 1);
+  $searchBg: rgb(252, 236, 255);
+  $waitingColor: rgba(255, 125, 83, 1);
+  $waitingBg: rgba(255, 228, 242, 1);
+  $finishedColor: rgba(0, 135, 255, 1);
+  $finishedBg: rgba(227, 242, 255, 1);
+  $inprogressBg: rgba(240, 236, 255, 1);
+  $ipColor: rgb(255, 248, 248);
+  $selectBg: rgba(240, 236, 255, 1);
+  $mainColor: rgba(47, 47, 47, 0.6);
+  $mainBg: #50b2ea;
+
+  p,
+  section,
+  label {
+    color:#{$paragraphColor} !important;
+  }
+
+  input,
+  select {
+    background-color: inherit;
+  }
+
+
+  button,
+  button p {
+    --ion-color-light: --ion-color-dark;
+  }
+
+  button[disabled] {
+    opacity: 0.6;
+  }
+
+  ion-button {
+    color: var(--ion-color-dark) !important;
+  }
+
+  form>input,
+  select,
+  ion-select,
+  >div>input,
+  div {
+    $ipColor: rgb(255, 248, 248);
+  }
+
+  .profile>div {
+    background-color: #{$mainBg} !important;
+
+    h3 {
+      color: white !important;
+    }
+
+    p {
+      color: black !important;
+    }
+  }
+
+  .edition {
+    background-color: var(--ion-background-color) !important;
+
+    >p:first-of-type::Before {
+      border-color: transparent transparent var(--ion-background-color) transparent !important;
+    }
+
+    p {
+      color: white !important;
+    }
+  }
+
+  form {
+
+    input,
+    .phone,
+    #password,
+    select,
+    ion-select,
+    div,
+    .desc {
+      background-color: #{$mainBg} !important;
+      color: white !important;
+    }
+
+    ion-icon {
+      --ion-color-primary: white !important;
+      color: white !important;
+    }
+  }
+
+  .details {
+    >div {
+      background-color: #{$mainBg} !important;
+
+      p,
+      span,
+      ion-icon {
+        color: white !important;
+        --ion-color-primary: white;
+      }
+    }
+  }
+
+  .heading {
+    img {
+      box-shadow: 0px 0px 10px 0px rgb(255 255 255 / 70%);
+      border-radius: 20%;
+    }
+  }
+
+  .search>span {
+    background-color: #150064 !important;
+
+    &.selected {
+      background-color: white !important;
+    }
+  }
+
+  .tasks {
+    >div>div:last-of-type span {
+      color: #{$mainColor} !important;
+    }
+  }
+
+}

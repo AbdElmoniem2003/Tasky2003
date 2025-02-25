@@ -1,0 +1,68 @@
+<ion-content>
+  <div class="container">
+    <div class="heading">
+      <img (click)="backToTasks()" [src]="lAImg">
+      <h3>Add new task</h3>
+    </div>
+
+    <div>
+      @if(!taskImg){
+      <div (click)="addTaskImg()">
+        <img [src]="addImg">
+        <h3>Add Img</h3>
+      </div>
+      }
+      @if(taskImg ||addForm.value.image){
+      <div class="added" (click)="addTaskImg()">
+        <img class="added" [src]="taskImg">
+      </div>
+      }
+
+      <form [formGroup]="addForm">
+
+        <label>task title</label>
+        <input formControlName="title" placeholder="Enter title here..." type="text" required>
+        @if(addForm.controls['title']?.touched&&addForm.controls['title']?.invalid){
+        <small>This field is required</small>
+        }
+
+        <label>Task Description</label>
+        <textarea formControlName="desc" class="desc" placeholder="Enter description here..." type="text"
+          required></textarea>
+        @if(addForm.controls['desc']?.touched&&addForm.controls['desc']?.invalid){
+        <small>This field is required</small>
+        }
+
+        <label>periority</label>
+        <div>
+          <img [src]="flagImg" alt="">
+          <ion-select formControlName="priority" interface="action-sheet" toggleIcon="" cancelText="Back" required>
+            <ion-icon name="caret-down" color="primary" slot="end" aria-hidden="true"></ion-icon>
+            @for(priority of priorities;track $index){
+            <ion-select-option [value]="priority">
+              {{priority + ' Periority'}}
+            </ion-select-option>
+            }
+          </ion-select>
+        </div>
+        @if(addForm.controls['priority']?.touched&&addForm.controls['priority']?.invalid){
+        <small>This field is required</small>
+        }
+
+        <label>Due date</label>
+        <div (click)="showPicker()">
+          <img [src]="calenderImg">
+          <p id="selected-date">
+            {{addForm.value['dueDate']?(addForm.value['dueDate']|date:'dd/MM/yyyy'):'choose due date...'}}</p>
+          <input formControlName="dueDate" id="date" type="date" required>
+        </div>
+        @if(addForm.controls['dueDate']?.touched&&addForm.controls['dueDate']?.invalid){
+        <small>This field is required</small>
+        }
+
+        <ion-button (click)="addTask(addForm.value)" [disabled]="addForm.invalid" mode="ios">Add task</ion-button>
+      </form>
+    </div>
+  </div>
+
+</ion-content>

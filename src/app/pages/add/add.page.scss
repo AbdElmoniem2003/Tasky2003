@@ -1,0 +1,108 @@
+@use "../../../core/mixins.scss" as *;
+@use "../../../global.scss" as *;
+
+.container {
+
+  .heading {
+    padding: 12px 0;
+    justify-content: unset;
+    height: 48px;
+  }
+
+  >div {
+    @include flexMixin(column, unset, unset, 16px);
+    padding: 24px 0;
+
+    >div:first-of-type {
+      @include borderMixin(1px, dotted, #{$btnColor}, 12px);
+      @include flexMixin(row, center, center, 8px);
+      height: 56px;
+
+      &.added {
+        height: fit-content;
+      }
+
+      >h3 {
+        padding: 12px 0;
+      }
+
+      >img {
+        @include shapingMixin(24px, 24px);
+        border-radius: inherit;
+      }
+
+      >img.added {
+        @include shapingMixin(100%, fit-content)
+      }
+
+      >h3 {
+        @include fontMixin(19px, inherit, $btnColor, 24px);
+      }
+    }
+
+    form {
+      @include flexMixin(column, unset, unset, 8px);
+
+      select {
+        font-weight: 700;
+        padding: 0px 10px 0px 60px;
+      }
+
+      button,
+      ion-button {
+        margin-top: 16px;
+      }
+
+      >label {
+        color: #{$paragraphColor};
+        font-size: 12px;
+        margin-top: 8px;
+      }
+
+      >div {
+        position: relative;
+        padding: 0;
+      }
+
+      >div:first-of-type {
+        img {
+          position: absolute;
+          top: 50%;
+          left: 20px;
+          height: 24px;
+          transform: translate(0, -50%);
+          z-index: 5;
+        }
+      }
+
+      >div:last-of-type {
+        >input {
+          width: 100%;
+          appearance: none;
+
+          &::-webkit-calendar-picker-indicator {
+            display: none;
+          }
+        }
+
+        >img {
+          position: absolute;
+          right: 15px;
+          top: 11px;
+        }
+      }
+    }
+  }
+
+  #date {
+    @include shapingMixin(0px, 0px);
+    display: none;
+    position: absolute;
+    bottom: 100%;
+  }
+
+  #selected-date {
+    padding: 0 15px;
+  }
+
+}

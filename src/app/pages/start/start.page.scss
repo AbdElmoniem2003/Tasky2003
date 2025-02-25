@@ -1,0 +1,56 @@
+@use "../../../core/mixins.scss" as *;
+@use "../../../global.scss" as *;
+
+ion-content>img {
+  margin-top: 24px;
+  height: calc(482px - 24px);
+  width: 375px;
+}
+
+.container {
+  padding-top: 0;
+
+  >img.register-img {
+    display: block;
+    width: 100%;
+    height: 300.94px;
+    margin: 0 auto 0;
+  }
+
+  >div:first-of-type {
+    margin-top: 35px;
+    height: 150px;
+    text-align: center;
+
+    h3 {
+      @include shapingMixin(235px, 62px);
+      @include fontMixin(24px, inherit, var(--ion-color-dark), 31.25px);
+      font-weight: 700;
+      margin: 0 auto;
+    }
+
+    p {
+      @include shapingMixin(255px, 24px);
+      @include fontMixin(14px, inherit, #{$paragraphColor}, 24px);
+      margin: 0 auto;
+
+      &:first-of-type {
+        margin-top: 16px;
+      }
+    }
+
+  }
+
+  >div:last-child {
+    color: var(--ion-color-light);
+    height: 49px;
+    border-radius: #{$mainRadius};
+    @include boxingMixin(20px 0 50px, unset, #{$btnColor});
+    @include flexMixin(row, center, center, 8px);
+
+    >img {
+      @include shapingMixin(24px, 24px);
+    }
+  }
+
+}

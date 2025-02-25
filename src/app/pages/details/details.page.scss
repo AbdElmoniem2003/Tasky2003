@@ -1,0 +1,127 @@
+@use "../../../core/mixins.scss" as *;
+@use "../../../global.scss" as *;
+
+.container {
+
+  .heading {
+    height: 48px;
+    padding: 12px 0;
+  }
+
+
+  >img {
+    @include shapingMixin(100%, 225px);
+    border-radius: #{$mainRadius};
+  }
+
+  .task {
+
+    h3 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 32px;
+    }
+
+    >p {
+      padding: 8px 0 16px;
+      @include fontMixin(14px, inherit, #{$paragraphColor}, 24px);
+    }
+
+    >div {
+      @include flexMixin(column, unset, unset, 8px);
+      height: 166px;
+
+      >div {
+        @include flexMixin(row, space-between, center, 10px);
+        @include boxingMixin(0, 20px 10px 20px 24px, #{$selectBg});
+        height: 50px;
+        border-radius: 10px;
+        --ion-color-primary:#{$btnColor};
+        color: #{$btnColor};
+
+        img {
+          @include shapingMixin(24px, 24px);
+        }
+
+        >div {
+          display: flex;
+          flex-flow: column;
+        }
+
+        span {
+          @include fontMixin(9px, inherit, #{$paragraphColor}, 12px);
+        }
+
+        >p {
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 20px;
+          text-transform: capitalize
+        }
+
+        ion-icon {
+          @include shapingMixin(24px, 24px);
+        }
+
+      }
+
+      >div.date {
+        p {
+          font-weight: 400;
+          @include fontMixin(14px, inherit, var(--ion-color-dark), 24px);
+        }
+      }
+
+      >div:last-of-type {
+        p {
+          flex-basis: 75%;
+        }
+      }
+    }
+  }
+
+  >div:last-of-type {
+    padding: 20px;
+  }
+
+
+  .edition {
+    position: absolute;
+    top: 86px;
+    right: 15px;
+    @include shapingMixin(82px, 128px);
+    @include boxingMixin(0, 8px 16px, white);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.317);
+    border-radius: 12px;
+
+    p {
+      padding: 12px 0;
+      @include shapingMixin(50px, 36px);
+    }
+
+    >p:not(:last-of-type) {
+      position: relative;
+      border-bottom: 0.5px solid #{$ipBorderColor};
+    }
+
+    >p:first-child::before {
+      content: "";
+      display: block;
+      border: 10px solid;
+      border-color: transparent transparent white transparent;
+      border-radius: 0;
+      position: absolute;
+      bottom: calc(100% + 7px);
+      right: -8px;
+    }
+
+    >p:nth-child(2) {
+      color: #{$btnColor} !important;
+    }
+
+    >p:last-child {
+      color: rgba(255, 125, 83, 1) !important;
+    }
+  }
+
+}

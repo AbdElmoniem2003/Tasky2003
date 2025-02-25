@@ -1,0 +1,13 @@
+<input type="text" [(ngModel)]="searchText" (input)="filterCountries()" placeholder="Search with dial code or name">
+<div>
+
+  @for (country of countries; track $index) {
+  <div class="country" (click)="setCountry(country)">
+    <img src="https://flagsapi.com/{{country.countryCode.toUpperCase()}}/flat/64.png" [alt]="country.countryNameLocal">
+    <!-- <img src="https://flagsapi.com/{{country.countryCode.toUpperCase()}}/shiny/64.png" [alt]="country.countryNameEn"> -->
+    <!-- <img src="https://flagcdn.com/32x24/{{country.countryCode.toLowerCase()}}.png" [alt]="country.countryNameEn"> -->
+    <p>{{country.countryNameLocal}}</p>
+    <p>+{{country.countryCallingCode}}</p>
+  </div>
+  }
+</div>

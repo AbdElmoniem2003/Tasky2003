@@ -1,0 +1,79 @@
+<ion-content>
+
+  <div class="container">
+    <div class="heading">
+      <img (click)="backToTaskDetails()" [src]="lAImg">
+      <h3>Add new task</h3>
+    </div>
+
+    <div>
+      <div>
+        <img class="added" [lazyLoad]="taskToUpdate?.image" [defaultImage]="lazyImg">
+        <ion-icon (click)="updateTaskImg()" name="create" slot="end" color='primary'></ion-icon>
+      </div>
+
+      @if(taskToUpdate){
+      <form [formGroup]="updateForm">
+
+        <label>task title</label>
+        <input formControlName="title" placeholder="Enter title here..." type="text" required>
+        @if(updateForm.controls['title']?.invalid && updateForm.controls['title']?.touched){
+        <small>This Field Is Requiered</small>
+        }
+
+        <label>Task Description</label>
+        <textarea formControlName="desc" class="desc" placeholder="Enter description here..." type="text"
+          required></textarea>
+        @if(updateForm.controls['desc']?.invalid && updateForm.controls['desc']?.touched){
+        <small>This Field Is Requiered</small>
+        }
+
+        <label>periority</label>
+        <div>
+          <img [src]="flagImg">
+          <ion-select formControlName="priority" interface="action-sheet" toggleIcon="">
+            <ion-icon name="caret-down-outline" slot="end" color="primary"></ion-icon>
+            @for(priority of priorities;track $index){
+            <ion-select-option [value]="priority">
+              {{priority + ' priority'}}
+            </ion-select-option>
+            }
+          </ion-select>
+        </div>
+        @if(updateForm.controls['priority']?.invalid && updateForm.controls['priority']?.touched){
+        <small>This Field Is Requiered</small>
+        }
+
+        <label>cases</label>
+        <div>
+          <img [src]="flagImg">
+          <ion-select formControlName="status" interface="action-sheet" toggleIcon="">
+            <ion-icon name="caret-down-outline" slot="end" color="primary"></ion-icon>
+            @for(status of cases;track $index){
+            <ion-select-option [value]="status">{{status}}</ion-select-option>
+            }
+          </ion-select>
+        </div>
+        @if(updateForm.controls['status']?.invalid && updateForm.controls['status']?.touched){
+        <small>This Field Is Requiered</small>
+        }
+
+        <label>Due date</label>
+        <div (click)="showPicker()">
+          <img [src]="calenderImg">
+          <p id="selected-date">
+            {{updateForm.value['dueDate']?(updateForm.value['dueDate']|date:'dd/MM/yyyy'):'choose due date...'}}</p>
+          <input formControlName="dueDate" id="date" type="date" required>
+        </div>
+        @if(updateForm.controls['dueDate']?.invalid && updateForm.controls['dueDate']?.touched){
+        <small>This Field Is Requiered</small>
+        }
+
+        <ion-button (click)="updateTask(updateForm.value)" [disabled]="updateForm.invalid" mode="ios">Update
+          Task</ion-button>
+      </form>
+      }
+    </div>
+  </div>
+
+</ion-content>

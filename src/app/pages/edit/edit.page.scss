@@ -1,0 +1,116 @@
+@use "../../../core/mixins.scss" as *;
+@use "../../../global.scss" as *;
+
+.container {
+
+  .heading {
+    justify-content: unset;
+    height: 48px;
+    padding: 0;
+
+  }
+
+  >div {
+    padding: 12px 0;
+    @include flexMixin(column, unset, unset, 16px);
+
+    >div:first-of-type {
+      position: relative;
+      border-radius: 12px;
+      padding: 0 0;
+      @include flexMixin(row, center, unset, 8px);
+
+      >ion-icon {
+        @include shapingMixin(30px, 30px);
+        --ion-color-primary: #{$btnColor};
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        border-radius: 50%;
+      }
+
+      >img {
+        @include shapingMixin(24px, 24px);
+      }
+
+      >img.added {
+        @include shapingMixin(100%, fit-content);
+        border-radius: #{$mainRadius};
+      }
+
+      >h3 {
+        @include fontMixin(19px, inherit, #{$btnColor}, 25px);
+      }
+    }
+
+    form {
+      @include flexMixin(column, unset, unset, 8px);
+
+      select {
+        font-weight: 700;
+        padding: 0px 10px 0px 60px;
+      }
+
+      >div {
+        position: relative;
+        padding: 0;
+
+        img {
+          position: absolute;
+          top: 50%;
+          left: 20px;
+          height: 24px;
+          transform: translate(0, -50%);
+          z-index: 5;
+        }
+
+        >ion-icon {
+          --ion-color-primary: rgb(95, 51, 225);
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          @include shapingMixin(24px, 24px);
+        }
+      }
+
+      >div:last-of-type {
+        position: relative;
+
+        >input {
+          width: 100%;
+          appearance: none;
+
+          &::-webkit-calendar-picker-indicator {
+            display: none;
+          }
+
+        }
+
+        >img {
+          position: absolute;
+          top: 50%;
+          left: 91% !important;
+          margin-left: -5px;
+        }
+      }
+
+      button,
+      ion-button {
+        margin-top: 16px
+      }
+    }
+  }
+
+  #date {
+    @include shapingMixin(0px, 0px);
+    display: none;
+    position: absolute;
+    bottom: 100%;
+  }
+
+  #selected-date {
+    padding: 0 15px;
+  }
+
+}

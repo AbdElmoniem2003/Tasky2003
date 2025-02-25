@@ -1,0 +1,78 @@
+<ion-content>
+
+  <ion-refresher (ionRefresh)="refresh($event)" slot="fixed">
+    <ion-refresher-content refreshingSpinner="dots"></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="container">
+
+    @if (isLoading) {
+    <app-loading-component></app-loading-component>
+    }
+
+    @if (tasks && !isLoading) {
+
+    <div class="heading">
+      <h3>Logo</h3>
+      <div>
+        <img (click)="toProfile()" [src]="personImg">
+        <img (click)="logout()" [src]="logoutImg">
+      </div>
+    </div>
+
+    <section>My Tasks</section>
+
+    <div class="search">
+      @for (taskCase of taskCases; track $index) {
+      <span (click)="filter(taskCase)" [ngClass]="taskCase=='all'?taskCase+ ' selected':taskCase"
+        title="search-spans">{{taskCase}}</span>
+      }
+    </div>
+
+    @if(tasks?.length<1){ <h1>No tasks to view, Add one!</h1> }
+
+      @if(tasks){
+      <div class="tasks">
+        @for( task of tasks;track $index){
+        <div (click)="toDetails(task)">
+          <img [src]="task.image || lazyImg">
+          <div>
+            <div>
+              <h3>{{task.title}}</h3>
+              <span [title]="task.status">{{task.status}}</span>
+            </div>
+            <p>{{task.desc}}</p>
+            <div>
+              <p [title]="task.priority">
+                <ion-icon name="flag-outline" slot='start' color="primary"></ion-icon>
+                {{task.priority}}
+              </p>
+              <span>{{ (task.createdAt) |date:"dd/MM/yyyy"}}</span>
+            </div>
+          </div>
+
+          <div class="dots">
+            <ion-icon name="ellipsis-vertical"></ion-icon>
+          </div>
+        </div>
+        }
+
+        <div class="btns">
+          <button>
+            <img [src]="qImg">
+          </button>
+          <button (click)="toAdd()">
+            <ion-icon name="add" color="light"></ion-icon>
+          </button>
+        </div>
+      </div>
+      }
+      }
+  </div>
+
+
+  <ion-infinite-scroll threshold="25%" position="bottom" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading more tasks...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

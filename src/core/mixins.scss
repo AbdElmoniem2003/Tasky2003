@@ -1,0 +1,31 @@
+@mixin fontMixin($size, $family, $color, $lineHieght) {
+  font-size: $size;
+  font-family: $family;
+  color: $color;
+  line-height: $lineHieght;
+
+}
+
+@mixin flexMixin($flow, $justifyContent, $alignItems, $gap) {
+  display: flex;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-flow: $flow;
+  gap: $gap;
+}
+
+@mixin boxingMixin($margin, $padding, $bgColor) {
+  margin: $margin;
+  padding: $padding;
+  background-color: $bgColor;
+}
+
+@mixin borderMixin($size, $style, $color, $borderRadius, ) {
+  border: $size $style $color;
+  border-radius: $borderRadius;
+}
+
+@mixin shapingMixin($width, $height) {
+  width: $width;
+  height: $height;
+}

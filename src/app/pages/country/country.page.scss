@@ -1,0 +1,33 @@
+@use "../../../core/mixins.scss" as *;
+@use "../../../global.scss" as *;
+
+div:not(.country) {
+  border-radius: 0 0 15px 15px;
+  overflow: scroll;
+}
+
+input {
+  height: 25px;
+  width: 100%;
+  border: 1px solid blue;
+  border-radius: 5px;
+}
+
+.country {
+  @include flexMixin(row, space-between, center, 8px);
+  padding: 2px 5px;
+  background-color: rgba(95, 51, 225, 0.5);
+
+  >img {
+    @include shapingMixin(24px, 24px)
+  }
+
+  >p:first-of-type {
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 24px;
+    width: 100%;
+    overflow: hidden;
+  }
+}
