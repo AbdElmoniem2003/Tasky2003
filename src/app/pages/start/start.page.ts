@@ -18,7 +18,11 @@ export class StartPage implements OnInit {
   ) { }
 
 
-  ngOnInit() { }
+
+  async ngOnInit() {
+     await this.funcService.handleStatusBar('dark', true)
+  }
+
 
   start() {
     this.navCtrl.navigateForward("/login")
