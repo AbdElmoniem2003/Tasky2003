@@ -57,10 +57,14 @@ export class AddPage implements OnInit {
 
   async addTaskImg() {
     await this.cameraService.captureImage(this.taskImg).then(async (img) => {
-
-      await this.funcService.showLoading()
-      this.image = img;
-      this.taskImg = await this.cameraService.readImageAsBase64(img)
+      if (img) {
+        await this.funcService.showLoading()
+        this.image = img;
+        this.taskImg = await this.cameraService.readImageAsBase64(img)
+      } else {
+        this.taskImg = null;
+        this.addForm.value.image = null
+      }
       await this.funcService.dismissLoading()
     })
   }
