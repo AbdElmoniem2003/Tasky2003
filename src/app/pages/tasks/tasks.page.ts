@@ -84,9 +84,7 @@ export class TasksPage implements OnInit {
   async getTasksImgs(tasks: TaskResponse[]) {
     tasks.forEach(async (t) => {
       await this.dataService.readFile(t).then((file) => {
-        console.log(t.image);
         t.image = this.cameraService.returnBase64(file.data)
-        console.log(t.image);
       })
     })
   }

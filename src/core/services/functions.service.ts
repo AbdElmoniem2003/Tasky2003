@@ -147,7 +147,7 @@ export class FunctionsService {
   }
 
 
-  async shareObject(obj: Object | TaskResponse | any) {
+  async shareObject(obj: TaskResponse|any) {
 
     const file = await Filesystem.getUri({
       path: `${environment.STORED_IMAGES}/${obj.title}_${obj.desc}.png`,

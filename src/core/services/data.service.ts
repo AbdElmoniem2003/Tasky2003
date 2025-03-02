@@ -143,7 +143,7 @@ export class DataService {
   async makeDir() {
 
     const writeDirOpts: MkdirOptions = {
-      directory: Directory.Cache,
+      directory: Directory.Data,
       path: `${environment.STORED_IMAGES}`,
       recursive: true
     }
@@ -152,7 +152,7 @@ export class DataService {
 
   async saveImage(task: TaskClass | TaskResponse, imageBase64: string | any) {
     const writeOpts: WriteFileOptions = {
-      directory: Directory.Cache,
+      directory: Directory.Data,
       path: `${environment.STORED_IMAGES}/${task.title}_${task.desc}.png`,
       data: imageBase64,
       recursive: true
@@ -162,7 +162,7 @@ export class DataService {
 
   async deleteImageFile(task: TaskResponse) {
     const deleteOpts: DeleteFileOptions = {
-      directory: Directory.Cache,
+      directory: Directory.Data,
       path: `${environment.STORED_IMAGES}/${task.title}_${task.desc}.png`,
     }
     return await Filesystem.deleteFile(deleteOpts)
@@ -170,7 +170,7 @@ export class DataService {
 
   async readFile(task: TaskResponse) {
     const readOpts: ReadFileOptions = {
-      directory: Directory.Cache,
+      directory: Directory.Data,
       path: `${environment.STORED_IMAGES}/${task.title}_${task.desc}.png`,
     }
     return await Filesystem.readFile(readOpts)
@@ -179,13 +179,13 @@ export class DataService {
   async getFileUri(task: TaskResponse) {
     return await Filesystem.getUri({
       path: `${environment.STORED_IMAGES}/${task.title}_${task.desc}.png`,
-      directory: Directory.Cache
+      directory: Directory.Data
     })
   }
 
   async readDir(): Promise<ReaddirResult> {
     const dirOpts: ReaddirOptions = {
-      directory: Directory.Cache,
+      directory: Directory.Data,
       path: `${environment.STORED_IMAGES}`
     }
     return await Filesystem.readdir(dirOpts)
@@ -194,7 +194,7 @@ export class DataService {
   async deleteDir(): Promise<void> {
     const removeDirOpts: RmdirOptions = {
       path: `${environment.STORED_IMAGES}`,
-      directory: Directory.Cache,
+      directory: Directory.Data,
       recursive: true
     }
     return await Filesystem.rmdir(removeDirOpts)
@@ -210,7 +210,7 @@ export class DataService {
 
   async renameSavedImage(oldTask: TaskResponse, newTask: TaskClass) {
     const options: RenameOptions = {
-      directory: Directory.Cache,
+      directory: Directory.Data,
       from: `${environment.STORED_IMAGES}/${oldTask.title}_${oldTask.desc}.png`,
       to: `${environment.STORED_IMAGES}/${newTask.title}_${newTask.desc}.png`
     }
