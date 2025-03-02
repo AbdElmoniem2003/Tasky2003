@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { DataService } from 'src/core/services/data.service';
+import { FunctionsService } from 'src/core/services/functions.service';
 
 
 @Component({
@@ -14,11 +15,14 @@ export class StartPage implements OnInit {
   rAImg: string = '../../../assets/imgs/Arrow - Right.png'
 
   constructor(private dataService: DataService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private funcService:FunctionsService
   ) { }
 
 
-  ngOnInit() { }
+  async ngOnInit() {
+     await this.funcService.handleStatusBar('dark', true)
+  }
 
   start() {
     this.navCtrl.navigateForward("/login")
