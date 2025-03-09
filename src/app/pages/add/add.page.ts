@@ -78,7 +78,7 @@ export class AddPage implements OnInit {
       formData.append('image', file);
 
       this.dataService.postData('todos/', task).subscribe(async (t: TaskResponse) => {
-        this.dataService.uploadImage('upload/image', formData);
+        this.dataService.uploadImage('upload/image', formData)
 
         // store the all tasks with image of "Path.png" to reduce memory consummed
         let tasksCloneArr = this.dataService.tasks;

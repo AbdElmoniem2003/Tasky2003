@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ActionSheetController, AlertOptions, NavController, ToastOptions } from '@ionic/angular';
+import { AlertOptions, NavController, ToastOptions } from '@ionic/angular';
 import { CameraService } from 'src/core/services/camera.service';
 import { DataService } from 'src/core/services/data.service';
 import { FunctionsService } from 'src/core/services/functions.service';
-import { TaskClass, TaskResponse } from 'src/core/types/task';
-import { ProfileResponse, UserClass } from 'src/core/types/user';
+import { TaskResponse } from 'src/core/types/task';
+import { ProfileResponse } from 'src/core/types/user';
+import { Printer, PrintOptions } from '@bcyesil/capacitor-plugin-printer';
 
 @Component({
   selector: 'app-details',
@@ -44,6 +45,7 @@ export class DetailsPage implements OnInit {
   }
 
   async deleteTask(id: string) {
+    this.editMode = !this.editMode
 
     const alertOptions: AlertOptions = {
       mode: 'ios',
@@ -76,7 +78,8 @@ export class DetailsPage implements OnInit {
 
 
   async edit() {
-    this.navCtrl.navigateForward(`/edit/${this.currentTask._id}`)
+    this.editMode = !this.editMode
+    await this.navCtrl.navigateForward(`/edit/${this.currentTask._id}`)
   }
 
 
@@ -114,7 +117,16 @@ export class DetailsPage implements OnInit {
   }
 
   async shareTask(task: TaskResponse) {
+    this.editMode = !this.editMode
     await this.funcService.shareObject(task)
+  }
+
+  async printTask() {
+    this.editMode = !this.editMode
+    const printOpts: PrintOptions = {
+      content: '',
+    }
+    await Printer.print(printOpts).then(() => console.log('Done')).catch(err => console.log(err, 'Failed'))
   }
 
   back() {

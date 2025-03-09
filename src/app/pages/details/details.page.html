@@ -11,9 +11,20 @@
 
     @if(editMode){
     <div class="edition">
-      <p (click)="edit()">Edit</p>
-      <p (click)="shareTask(currentTask)">Share</p>
-      <p (click)="deleteTask(currentTask._id)">Delete</p>
+      <div>
+        <p (click)="edit()">Edit
+          <ion-icon name="create" slot="end" color="primary"></ion-icon>
+        </p>
+        <p (click)="shareTask(currentTask)">Share
+          <ion-icon name="share" slot="end" color="primary"></ion-icon>
+        </p>
+        <p (click)="printTask()">Print
+          <ion-icon name="print" slot="end" color="primary"></ion-icon>
+        </p>
+        <p (click)="deleteTask(currentTask._id)">Delete
+          <ion-icon name="trash" slot="end" color="primary"></ion-icon>
+        </p>
+      </div>
     </div>
     }
 

@@ -87,40 +87,69 @@
 
   .edition {
     position: absolute;
-    top: 86px;
-    right: 15px;
-    @include shapingMixin(82px, 128px);
+    top: 70px;
+    right: 12px;
+    @include shapingMixin(92px, 128px);
     @include boxingMixin(0, 8px 16px, white);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.317);
     border-radius: 12px;
 
-    p {
-      padding: 12px 0;
-      @include shapingMixin(50px, 36px);
+    >div {
+      overflow: scroll;
+      height: 110px;
+
+      p {
+        padding: 12px 0;
+        @include shapingMixin(inherit, 36px);
+        display: flex;
+        justify-content: space-between;
+
+        >ion-icon {
+          --ion-color-primary: var(ion-color-dark) !important;
+        }
+      }
+
+      >p:not(:last-of-type) {
+        position: relative;
+        border-bottom: 0.5px solid #{$ipBorderColor};
+      }
+
+
+      >p:nth-child(2) {
+        color: #{$btnColor} !important;
+
+        >ion-icon {
+          --ion-color-primary:#{$btnColor} !important;
+        }
+      }
+
+      >p:nth-child(3) {
+        color: var(--ion-color-secondary) !important;
+
+        >ion-icon {
+          --ion-color-primary: var(--ion-color-secondary) !important;
+        }
+      }
+
+      >p:last-child {
+        color: rgba(255, 125, 83, 1) !important;
+
+        >ion-icon {
+          --ion-color-primary: rgba(255, 125, 83, 1) !important;
+          ;
+        }
+      }
     }
 
-    >p:not(:last-of-type) {
-      position: relative;
-      border-bottom: 0.5px solid #{$ipBorderColor};
-    }
-
-    >p:first-child::before {
+    &::before {
       content: "";
       display: block;
       border: 10px solid;
       border-color: transparent transparent white transparent;
       border-radius: 0;
       position: absolute;
-      bottom: calc(100% + 7px);
-      right: -8px;
-    }
-
-    >p:nth-child(2) {
-      color: #{$btnColor} !important;
-    }
-
-    >p:last-child {
-      color: rgba(255, 125, 83, 1) !important;
+      bottom: calc(100% - 1px);
+      right: 8px;
     }
   }
 
